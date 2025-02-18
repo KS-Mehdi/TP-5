@@ -1,6 +1,6 @@
-const Book = require("../models/book");
+import {Book} from "../models/book.js";
 
-exports.createBook = async (req, reply) => {
+export const createBook = async (req, reply) => {
     try {
         const book = new Book(req.body);
         await book.save();
@@ -10,7 +10,7 @@ exports.createBook = async (req, reply) => {
     }
 };
 
-exports.getAllBooks = async (req, reply) => {
+export const getAllBooks = async (req, reply) => {
     try {
         const books = await Book.find();
         reply.send(books);
@@ -19,7 +19,7 @@ exports.getAllBooks = async (req, reply) => {
     }
 };
 
-exports.getBookById = async (req, reply) => {
+export const getBookById = async (req, reply) => {
     try {
         const book = await Book.findById(req.params.id);
         if (!book) return reply.code(404).send({ message: "Livre non trouvé" });
@@ -29,7 +29,7 @@ exports.getBookById = async (req, reply) => {
     }
 };
 
-exports.updateBook = async (req, reply) => {
+export const updateBook = async (req, reply) => {
     try {
         const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!book) return reply.code(404).send({ message: "Livre non trouvé" });
@@ -39,7 +39,7 @@ exports.updateBook = async (req, reply) => {
     }
 };
 
-exports.deleteBook = async (req, reply) => {
+export const deleteBook = async (req, reply) => {
     try {
         const book = await Book.findByIdAndDelete(req.params.id);
         if (!book) return reply.code(404).send({ message: "Livre non trouvé" });

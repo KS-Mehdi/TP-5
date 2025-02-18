@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-async function connectDB() {
+export async function connectDB() {
     try {
         await mongoose.connect("mongodb://localhost:27017/albumsDB", {
             useNewUrlParser: true,
@@ -13,4 +13,4 @@ async function connectDB() {
     }
 }
 
-module.exports = connectDB;
+

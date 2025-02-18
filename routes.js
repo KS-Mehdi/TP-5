@@ -1,11 +1,10 @@
-const booksController = require("./controllers/booksController.js");
+import { createBook, getAllBooks, getBookById, updateBook, deleteBook } from "./controllers/booksController.js";
 
-async function routes(fastify, options) {
-    fastify.post("/books", booksController.createBook);
-    fastify.get("/books", booksController.getAllBooks);
-    fastify.get("/books/:id", booksController.getBookById);
-    fastify.put("/books/:id", booksController.updateBook);
-    fastify.delete("/books/:id", booksController.deleteBook);
+export async function routes(fastify, options) {
+    fastify.post("/books", createBook);
+    fastify.get("/books", getAllBooks);
+    fastify.get("/books/:id", getBookById);
+    fastify.put("/books/:id", updateBook);
+    fastify.delete("/books/:id", deleteBook);
 }
 
-module.exports = routes;
