@@ -1,6 +1,5 @@
 const Book = require("../models/book");
 
-// Créer un livre
 exports.createBook = async (req, reply) => {
     try {
         const book = new Book(req.body);
@@ -11,7 +10,6 @@ exports.createBook = async (req, reply) => {
     }
 };
 
-// Obtenir tous les livres
 exports.getAllBooks = async (req, reply) => {
     try {
         const books = await Book.find();
@@ -21,7 +19,6 @@ exports.getAllBooks = async (req, reply) => {
     }
 };
 
-// Obtenir un livre par ID
 exports.getBookById = async (req, reply) => {
     try {
         const book = await Book.findById(req.params.id);
@@ -32,7 +29,6 @@ exports.getBookById = async (req, reply) => {
     }
 };
 
-// Mettre à jour un livre
 exports.updateBook = async (req, reply) => {
     try {
         const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
@@ -43,7 +39,6 @@ exports.updateBook = async (req, reply) => {
     }
 };
 
-// Supprimer un livre
 exports.deleteBook = async (req, reply) => {
     try {
         const book = await Book.findByIdAndDelete(req.params.id);
