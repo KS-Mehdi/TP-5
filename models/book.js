@@ -6,7 +6,7 @@ const bookSchema = new mongoose.Schema({
     description: { type: String },
     format: { 
         type: String, 
-        enum: ["poche", "manga", "audio", "roman"], 
+        enum: ["poche", "manga", "audio"], 
         default: "poche" 
     }
 });
