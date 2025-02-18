@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export async function connectDB() {
+async function connectDB() {
     try {
         await mongoose.connect("mongodb://localhost:27017/albumsDB", {
             useNewUrlParser: true,
@@ -13,4 +13,4 @@ export async function connectDB() {
     }
 }
 
-
+export default connectDB;

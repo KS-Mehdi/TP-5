@@ -1,20 +1,22 @@
 import Fastify from "fastify";
-import { readFileSync } from "fs";
-import {connectDB} from "./databases/mongodb.js";
-import {routes} from "./routes.js";
+import fs from "fs";
+import connectDB from "./databases/mongodb.js";
+import routes from "./routes.js";
+import helmet from "@fastify/helmet";
+import cors from "@fastify/cors";
 
 const fastify = Fastify({
     https: {
-        key: readFileSync("./key.pem"),
-        cert: readFileSync("./cert.pem")
+        key: fs.readFileSync("./key.pem"),
+        cert: fs.readFileSync("./cert.pem")
     },
     logger: true
 });
 
 connectDB();
 
-fastify.register(import("@fastify/helmet"));
-fastify.register(import("@fastify/cors"));
+fastify.register(helmet);
+fastify.register(cors);
 
 fastify.register(routes);
 
@@ -25,3 +27,4 @@ fastify.listen({ port: 3000, host: "localhost" }, (err, address) => {
     }
     console.log(`Serveur sécurisé en cours d'exécution sur ${address}`);
 });
+
